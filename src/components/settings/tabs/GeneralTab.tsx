@@ -1,6 +1,6 @@
 import { systemInfo } from "../../../utils";
 import CustomSwitch from "../CustomSwitch";
-import { Card, CardContent, Typography, Stack, Divider } from "@mui/material";
+import { Card, CardContent, Stack, Divider } from "@mui/material";
 import { SectionHeading, SectionDescription } from "../settings.styled";
 
 export default function GeneralTab() {
@@ -11,7 +11,7 @@ export default function GeneralTab() {
         <CardContent>
           <SectionHeading>Task Categories</SectionHeading>
           <SectionDescription>
-            Manage how tasks are grouped inside your Todo App.
+            Manage how tasks are grouped inside your Taskflow App.
           </SectionDescription>
 
           <Divider sx={{ my: 2 }} />
@@ -29,7 +29,7 @@ export default function GeneralTab() {
         <CardContent>
           <SectionHeading>App Badge</SectionHeading>
           <SectionDescription>
-            Display badges on your installed PWA icon.
+            Display badges on your installed Taskflow PWA icon.
           </SectionDescription>
 
           <Divider sx={{ my: 2 }} />
@@ -38,8 +38,8 @@ export default function GeneralTab() {
             settingKey="appBadge"
             header="PWA App Badge"
             text="Show a badge on the app icon indicating the number of remaining tasks."
-            disabled={!systemInfo.isPWA || !('setAppBadge' in navigator)}
-            disabledReason="This feature only works if the app is installed as a PWA and the browser supports badges."
+            disabled={!systemInfo.isPWA || !("setAppBadge" in navigator)}
+            disabledReason="This feature only works if Taskflow is installed as a PWA and the browser supports badges."
           />
         </CardContent>
       </Card>
@@ -49,7 +49,7 @@ export default function GeneralTab() {
         <CardContent>
           <SectionHeading>Completed Tasks</SectionHeading>
           <SectionDescription>
-            Control how completed tasks appear in your list.
+            Control how completed tasks appear in your Taskflow lists.
           </SectionDescription>
 
           <Divider sx={{ my: 2 }} />
@@ -67,7 +67,7 @@ export default function GeneralTab() {
         <CardContent>
           <SectionHeading>Progress Visualization</SectionHeading>
           <SectionDescription>
-            Track your productivity visually.
+            Track your productivity visually inside Taskflow.
           </SectionDescription>
 
           <Divider sx={{ my: 2 }} />

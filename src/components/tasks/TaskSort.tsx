@@ -129,12 +129,13 @@ const SortButton = styled(Button)<{ isMenuOpen: boolean }>`
   border: 1px solid ${({ theme }) => (isDark(theme.secondary) ? "#44479cb7" : theme.primary)} !important;
   transition: width 0.2s ease;
   ${({ isMenuOpen, theme }) =>
-    isMenuOpen &&
-    css`
-      background: ${isDark(theme.secondary)} ? "#090b228e" : "#ffffff8e";
-      box-shadow: 
-        ${isDark(theme.secondary) ? "0 0 0 4px #1a1e4a7f" : `0 0 0 4px ${theme.primary}64`};
-    `}
+  isMenuOpen &&
+  css`
+    background: ${isDark(theme.secondary) ? "#090b228e" : "#ffffff8e"};
+    box-shadow: ${isDark(theme.secondary)
+      ? "0 0 0 4px #1a1e4a7f"
+      : `0 0 0 4px ${theme.primary}64`};
+  `}
   @media print {
     display: none;
   }

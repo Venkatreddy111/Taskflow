@@ -57,15 +57,14 @@ export default function ReadAloudTab() {
   const muiTheme = useMuiTheme();
   const isOnline = useOnlineStatus();
 
-  const readAloudEnabled = user.settings.enableReadAloud && "speechSynthesis" in window;
+  const readAloudEnabled =
+    user.settings.enableReadAloud && "speechSynthesis" in window;
 
-  /** Get available voices safely */
   const getAvailableVoices = React.useCallback((): SpeechSynthesisVoice[] => {
     if (typeof window === "undefined" || !window.speechSynthesis) return [];
     return window.speechSynthesis.getVoices() ?? [];
   }, []);
 
-  /** Load voices */
   useEffect(() => {
     if (!readAloudEnabled) {
       setAvailableVoices([]);
@@ -81,20 +80,18 @@ export default function ReadAloudTab() {
     window.speechSynthesis.onvoiceschanged = load;
 
     return () => {
-      // cleanup without type error
-      (window.speechSynthesis as SpeechSynthesis & { onvoiceschanged: null | (() => void) }).onvoiceschanged =
-        null;
+      (window.speechSynthesis as SpeechSynthesis & {
+        onvoiceschanged: null | (() => void);
+      }).onvoiceschanged = null;
     };
   }, [getAvailableVoices, readAloudEnabled]);
 
-  /** Stop speech if disabled */
   useEffect(() => {
     if (!readAloudEnabled) return;
     window.speechSynthesis?.cancel();
     setIsSampleReading(false);
   }, [readAloudEnabled]);
 
-  /** Filter, sort voices */
   const filteredVoices = useMemo(() => {
     if (!availableVoices.length) return [];
 
@@ -120,7 +117,6 @@ export default function ReadAloudTab() {
     });
   }, [availableVoices]);
 
-  /** Region label */
   const getLanguageRegion = (lang: string): string => {
     if (!lang) return "";
     const parts = lang.split("-");
@@ -132,7 +128,6 @@ export default function ReadAloudTab() {
     }
   };
 
-  /** Flag emoji */
   const getFlagUnicodes = (locale: string): string => {
     const region = locale.split("-").pop()?.toUpperCase();
     if (!region || region.length !== 2) return "";
@@ -140,29 +135,32 @@ export default function ReadAloudTab() {
     return points.map((p) => p.toString(16)).join("-");
   };
 
-  /** Voice selection */
-  const handleVoiceChange = (e: SelectChangeEvent<string>): void => {
-    const voice = e.target.value as AppSettings["voice"];
-    setUser((prev) => ({
-      ...prev,
-      settings: { ...prev.settings, voice },
-    }));
-  };
+  const handleVoiceChange = (e: SelectChangeEvent<unknown>): void => {
+  const voice = e.target.value as AppSettings["voice"];
 
-  /** Volume commit */
-  const handleVoiceVolCommitChange: SliderProps["onChangeCommitted"] = (_e, val) => {
+  setUser((prev) => ({
+    ...prev,
+    settings: { ...prev.settings, voice },
+  }));
+};
+
+
+  const handleVoiceVolCommitChange: SliderProps["onChangeCommitted"] = (
+    _e,
+    val
+  ) => {
     setUser((prev) => ({
       ...prev,
       settings: { ...prev.settings, voiceVolume: val as number },
     }));
   };
 
-  /** Mute/unmute */
   const handleMuteClick = (): void => {
     const current = voiceVolume;
     setPrevVoiceVol(current);
 
-    const newVol = current === 0 ? prevVoiceVol || defaultUser.settings.voiceVolume : 0;
+    const newVol =
+      current === 0 ? prevVoiceVol || defaultUser.settings.voiceVolume : 0;
 
     setUser((prev) => ({
       ...prev,
@@ -172,7 +170,6 @@ export default function ReadAloudTab() {
     setVoiceVolume(newVol);
   };
 
-  /** Play sample */
   const handlePlaySample = (): void => {
     if (!readAloudEnabled) return;
 
@@ -185,13 +182,14 @@ export default function ReadAloudTab() {
     }
 
     const utter = new SpeechSynthesisUtterance(
-      "This is a sample text for testing the speech synthesis feature."
+      "This is a sample text for testing the Taskflow speech feature."
     );
 
     const voices = window.speechSynthesis.getVoices();
     const preferred = String(user.settings.voice).split("::")[0];
 
-    utter.voice = voices.find((v) => v.name === preferred) ?? voices[0] ?? null;
+    utter.voice =
+      voices.find((v) => v.name === preferred) ?? voices[0] ?? null;
     utter.volume = voiceVolume;
     utter.rate = 1;
 
@@ -201,7 +199,6 @@ export default function ReadAloudTab() {
     window.speechSynthesis.speak(utter);
   };
 
-  /** Sync volume with context */
   useEffect(() => {
     setVoiceVolume(user.settings.voiceVolume);
   }, [user.settings.voiceVolume]);
@@ -218,7 +215,7 @@ export default function ReadAloudTab() {
       <CustomSwitch
         settingKey="enableReadAloud"
         header="Enable Read Aloud"
-        text="Loads voices and shows Read Aloud in the task menu."
+        text="Activate text-to-speech and show Read Aloud options inside Taskflow."
         disabled={!("speechSynthesis" in window)}
       />
 
@@ -229,11 +226,15 @@ export default function ReadAloudTab() {
 
             <Button
               variant="contained"
-              sx={{ color: getFontColor(muiTheme.palette.primary.main), mt: 1 }}
+              sx={{
+                color: getFontColor(muiTheme.palette.primary.main),
+                mt: 1,
+              }}
               disabled={!readAloudEnabled}
               onClick={handlePlaySample}
             >
-              {isSampleReading ? <StopCircleRounded /> : <RecordVoiceOverRounded />} &nbsp;
+              {isSampleReading ? <StopCircleRounded /> : <RecordVoiceOverRounded />}
+              &nbsp;
               {isSampleReading ? "Stop" : "Play Sample"}
             </Button>
           </CardContent>
@@ -243,7 +244,7 @@ export default function ReadAloudTab() {
           <CardContent>
             <SectionHeading>Voice Selection</SectionHeading>
             <SectionDescription sx={{ mb: 1 }}>
-              Pick a voice. Some voices require internet.
+              Choose a voice. Some may require an internet connection.
             </SectionDescription>
 
             {filteredVoices.length > 0 ? (
@@ -264,8 +265,12 @@ export default function ReadAloudTab() {
                   );
 
                   const renderVoice = (voice: SpeechSynthesisVoice) => {
-                    const label = voice.name.replace(/^(Google|Microsoft)\s*|\([^()]*\)/gi, "");
-                    const disabled = voice.localService === false && !isOnline;
+                    const label = voice.name.replace(
+                      /^(Google|Microsoft)\s*|\([^()]*\)/gi,
+                      ""
+                    );
+                    const disabled =
+                      voice.localService === false && !isOnline;
                     const flag = getFlagUnicodes(voice.lang);
 
                     return (
@@ -275,8 +280,12 @@ export default function ReadAloudTab() {
                         disabled={disabled}
                         sx={{ padding: "10px", borderRadius: "8px" }}
                       >
-                        {voice.name.startsWith("Google") && <Google sx={{ mr: 1 }} />}
-                        {voice.name.startsWith("Microsoft") && <Microsoft sx={{ mr: 1 }} />}
+                        {voice.name.startsWith("Google") && (
+                          <Google sx={{ mr: 1 }} />
+                        )}
+                        {voice.name.startsWith("Microsoft") && (
+                          <Microsoft sx={{ mr: 1 }} />
+                        )}
 
                         {label}
 
@@ -325,7 +334,9 @@ export default function ReadAloudTab() {
                     ...langVoices.map(renderVoice),
 
                     otherVoices.length > 0 && (
-                      <StyledListSubheader key="others">Other Languages</StyledListSubheader>
+                      <StyledListSubheader key="others">
+                        Other Languages
+                      </StyledListSubheader>
                     ),
                     ...otherVoices.map(renderVoice),
                   ];
@@ -334,7 +345,10 @@ export default function ReadAloudTab() {
             ) : (
               <NoVoiceStyles>
                 No voices available.
-                <IconButton size="large" onClick={() => setAvailableVoices(getAvailableVoices())}>
+                <IconButton
+                  size="large"
+                  onClick={() => setAvailableVoices(getAvailableVoices())}
+                >
                   <CachedRounded />
                 </IconButton>
               </NoVoiceStyles>
@@ -344,7 +358,7 @@ export default function ReadAloudTab() {
               availableVoices.some((v) => v.localService === false) && (
                 <Alert severity="warning" sx={{ mt: 2 }} icon={<WifiOffRounded />}>
                   <AlertTitle>Offline Mode</AlertTitle>
-                  Some voices require internet.
+                  Some voices need an internet connection.
                 </Alert>
               )}
           </CardContent>
@@ -380,7 +394,9 @@ export default function ReadAloudTab() {
                 min={0}
                 max={1}
                 valueLabelDisplay="auto"
-                valueLabelFormat={(v) => (v === 0 ? "Muted" : `${Math.floor(v * 100)}%`)}
+                valueLabelFormat={(v) =>
+                  v === 0 ? "Muted" : `${Math.floor(v * 100)}%`
+                }
               />
             </div>
           </CardContent>

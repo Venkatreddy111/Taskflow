@@ -11,7 +11,7 @@ interface CustomSwitchProps {
   disabledReason?: string;
   settingKey: keyof {
     [K in keyof User["settings"] as User["settings"][K] extends boolean ? K : never]: never;
-  }; // get boolean keys only
+  }; // boolean-only settings
 }
 
 const CustomSwitch: React.FC<CustomSwitchProps> = ({
@@ -37,8 +37,9 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
     >
       <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Typography variant="h6" sx={{ fontWeight: 600, color: "text.primary", fontSize: "16px" }}>
-          {header}
+          {header} {/* Example: “Enable Taskflow Sync”, “Auto-Sort Tasks”, etc. */}
         </Typography>
+
         <FormGroup>
           <FormControlLabel
             control={
@@ -58,11 +59,13 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
           />
         </FormGroup>
       </Box>
+
       {text && (
         <Typography variant="body2" sx={{ color: "text.secondary", mt: 0 }}>
-          {text}
+          {text} {/* Example: “Automatically organize your taskflow items.” */}
         </Typography>
       )}
+
       {disabled && disabledReason && (
         <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
           <InfoOutlined fontSize="small" sx={{ mr: 0.5 }} />

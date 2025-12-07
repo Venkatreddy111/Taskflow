@@ -115,8 +115,8 @@ const template = ({ width, height, mode }) => {
         <div class="attribution">
           <div class="attribution-text">Made By</div>
           <div class="attribution-box">
-            <img src="https://avatars.githubusercontent.com/u/85953204?v=4" alt="@maciekt07" />
-            <span>@maciekt07</span>
+            <img src="https://avatars.githubusercontent.com/u/85953204?v=4" alt="@venkatreddy111" />
+            <span>@venkatreddy111</span>
           </div>
         </div>
       </body>

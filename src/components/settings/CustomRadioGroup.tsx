@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { SyncAltRounded } from "@mui/icons-material";
 import { css } from "@emotion/react";
 
-interface CustomRadioGroupProps<T> {
+interface CustomRadioGroupProps<T extends string> {
   options: OptionItem<T>[];
   value: T;
   disabledOptions?: T[];
@@ -44,11 +44,15 @@ const CustomRadioGroup = <T extends string>({
 
   return (
     <>
-      <StyledRadioGroup value={value} onChange={(e) => onChange(e.target.value as T)}>
+      <StyledRadioGroup
+        value={value}
+        onChange={(e) => onChange(e.target.value as T)} // no TS error
+      >
         {options.map((option) => {
           const isDisabled = disabledOptions.includes(option.value);
           const isSelected = value === option.value;
           const isFocused = focusedValue === option.value;
+
           return (
             <FormControlLabel
               key={option.value}
@@ -78,6 +82,7 @@ const CustomRadioGroup = <T extends string>({
           );
         })}
       </StyledRadioGroup>
+
       {focusedValue && keyboardFocus && (
         <FocusHint>
           <SyncAltRounded /> Navigate with arrow keys
@@ -89,32 +94,29 @@ const CustomRadioGroup = <T extends string>({
 
 export default CustomRadioGroup;
 
-// TODO: make options full width
+/* -------------------------------------------------------------------------- */
+/*                                  STYLES                                    */
+/* -------------------------------------------------------------------------- */
 
 const StyledRadioGroup = styled(RadioGroup)`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  gap: 16px;
-  margin: 0 6px;
   flex-wrap: wrap;
-  margin-top: 12px;
+  gap: 16px;
+  margin: 12px 6px 0;
   width: 100%;
-  max-width: calc(100% - 16px);
   box-sizing: border-box;
+
   @media (max-width: 768px) {
     gap: 12px;
-    margin: 12px 0 0 0;
-    max-width: calc(100% - 8px);
+    margin: 12px 0 0;
   }
 `;
 
-// make radio control invisible but accessible with keyboard navigation
 const StyledRadioControl = styled(Radio)`
   opacity: 0;
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -134,15 +136,17 @@ const StyledLabelBox = styled(Box)<StyledLabelBoxProps>`
   align-items: center;
   justify-content: center;
 
-  border-radius: 12px;
   width: 100px;
   height: 100px;
+  border-radius: 12px;
+  user-select: none;
+  box-sizing: border-box;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+
   color: ${({ theme, selected }) => selected && getFontColor(theme.primary)};
   background-color: ${({ theme, selected }) => (selected ? theme.primary : "transparent")};
-  transition: background-color 0.3s ease-in-out;
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-  box-sizing: border-box;
-  user-select: none;
+
+  transition: background-color 0.25s ease;
 
   ${({ disabled, theme, selected }) =>
     !disabled &&
@@ -157,7 +161,7 @@ const StyledLabelBox = styled(Box)<StyledLabelBoxProps>`
     css`
       outline: 3px solid ${theme.primary};
       outline-offset: 3px;
-      box-shadow: 0 0 8px ${theme.primary}AA;
+      box-shadow: 0 0 8px ${theme.primary}80;
     `}
 
   @media (max-width: 768px) {
@@ -168,12 +172,9 @@ const StyledLabelBox = styled(Box)<StyledLabelBoxProps>`
 
 const IconWrapper = styled.div`
   font-size: 28px;
-  width: 1em;
-  height: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
   margin-bottom: 12px;
 `;
 
@@ -181,7 +182,6 @@ const StyledLabel = styled(Typography)`
   font-weight: 500;
   text-align: center;
   max-width: 100px;
-  word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -189,8 +189,8 @@ const StyledLabel = styled(Typography)`
 const FocusHint = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 8px;
   gap: 4px;
+  margin-top: 8px;
   opacity: 0.8;
   font-size: 14px;
 `;

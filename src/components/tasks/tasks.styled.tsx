@@ -6,7 +6,7 @@ import { ColorPalette } from "../../theme/themeConfig";
 import { getFontColor, isDark, systemInfo } from "../../utils";
 import { reduceMotion } from "../../styles/reduceMotion.styled";
 
-// TODO: move EmojiContainer to top on smaller screens, fix text spacing
+// Taskflow: move EmojiContainer to top on smaller screens, fix text spacing
 
 interface TaskComponentProps {
   backgroundColor: string;

@@ -48,9 +48,10 @@ interface TaskItemProps {
   blur?: boolean;
   textHighlighter?: (text: string) => React.ReactNode;
 }
+
 /**
- * A reusable task component that displays task information with configurable features.
- * used across different views (TasksList, Share, ShareDialog) with consistent styling but varied behavior.
+ * A reusable TaskFlow item component that displays TaskFlow item information with configurable features.
+ * Used across different views (TaskFlowList, Share, ShareDialog) with consistent styling but varied behavior.
  */
 export const TaskItem = memo(
   ({
@@ -124,6 +125,7 @@ export const TaskItem = memo(
             <DragIndicatorRounded sx={{ mr: "4px", ml: "-8px" }} />
           </DragHandle>
         )}
+
         {enableSelection && selectedIds.length > 0 && (
           <StyledRadio
             clr={getFontColor(task.color)}

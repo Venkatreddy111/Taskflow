@@ -46,7 +46,7 @@ import DisabledThemeProvider from "../contexts/DisabledThemeProvider";
 
 interface EmojiPickerProps {
   emoji?: string;
-  setEmoji: Dispatch<SetStateAction<string | null>>; // TODO: use onEmojiChange instead
+  setEmoji: Dispatch<SetStateAction<string | null>>; // Taskflow: use onEmojiChange instead
   color?: string;
   name?: string;
   type?: "task" | "category";

@@ -22,8 +22,8 @@ export default function AboutTab() {
     <Paper elevation={0} sx={{ p: 2 }}>
       {/* App description */}
       <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.6 }}>
-        This Todo App is built with <strong>React.js</strong> and <strong>MUI</strong>, designed to
-        be fast, minimal and easy to use.  
+        Taskflow is built with <strong>React.js</strong> and <strong>MUI</strong>, designed to
+        be fast, minimal and easy to use.
         It includes features like task sharing, theme customization, offline support (PWA),
         and private peer-to-peer syncing.
       </Typography>
@@ -32,7 +32,7 @@ export default function AboutTab() {
       <Box
         component="img"
         src={banner}
-        alt="Todo App Preview"
+        alt="Taskflow App Preview"
         sx={{
           width: "100%",
           height: "auto",
@@ -44,10 +44,10 @@ export default function AboutTab() {
 
       {/* Footer / app credits */}
       <Typography variant="caption" sx={{ display: "block", opacity: 0.8, lineHeight: 1.6 }}>
-        Designed & developed as part of a learning project.  
+        Designed & developed as part of a learning project.
         Need the source code? Check out the repository:{" "}
         <Link
-          href="https://github.com/your-profile/your-todo-app"
+          href="https://github.com/your-profile/Taskflow"
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -55,12 +55,12 @@ export default function EmojiTab() {
 
   return (
     <Stack spacing={3}>
-      {/* Emoji Style Card */}
+      {/* ------------ Emoji Style Section ------------ */}
       <Card elevation={2} sx={{ borderRadius: "16px" }}>
         <CardContent>
           <SectionHeading>Emoji Style</SectionHeading>
           <Typography variant="body2" sx={{ mb: 2, opacity: 0.8 }}>
-            Choose how emojis appear across the app.
+            Customize how emojis appear throughout Taskflow.
           </Typography>
 
           <CustomRadioGroup
@@ -80,36 +80,36 @@ export default function EmojiTab() {
               icon={<WifiOffRounded />}
             >
               <AlertTitle>Offline Mode</AlertTitle>
-              Some emoji styles might not load while offline.
+              Some emoji styles may not load while offline.
             </Alert>
           )}
         </CardContent>
       </Card>
 
-      {/* Simple Emoji Picker Card */}
+      {/* ------------ Simple Picker Section ------------ */}
       <Card elevation={2} sx={{ borderRadius: "16px" }}>
         <CardContent>
           <SectionHeading>Simple Emoji Picker</SectionHeading>
           <Typography variant="body2" sx={{ mb: 1, opacity: 0.8 }}>
-            Enables a lighter emoji picker with recently used emojis.
+            Use a faster, lightweight emoji picker with your recent emojis.
           </Typography>
 
           <CustomSwitch
             settingKey="simpleEmojiPicker"
             header="Enable Simple Picker"
-            text="Only show recently used emojis for faster loading."
+            text="Show only your recently used emojis for quicker access."
             disabled={!hasEmojiData}
             disabledReason="No recent emoji data found."
           />
         </CardContent>
       </Card>
 
-      {/* Emoji Data Clearing */}
+      {/* ------------ Emoji Data Clearing ------------ */}
       <Card elevation={2} sx={{ borderRadius: "16px" }}>
         <CardContent>
           <SectionHeading>Emoji Data</SectionHeading>
           <SectionDescription>
-            Manage the stored data for your recently used emojis.
+            Manage stored Taskflow emoji history and preferences.
           </SectionDescription>
 
           <Divider sx={{ my: 2 }} />

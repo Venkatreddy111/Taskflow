@@ -129,7 +129,7 @@ export const SettingsDialog = ({ open, onClose, handleOpen }: SettingsProps) => 
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
     navigateToTab(newValue);
-    // reset scroll instantly for new tab
+
     requestAnimationFrame(() => {
       scrollRef.current?.scrollTo({ top: 0 });
     });
@@ -151,7 +151,7 @@ export const SettingsDialog = ({ open, onClose, handleOpen }: SettingsProps) => 
     }
 
     const match = hash.match(/^#settings\/(\w+)/);
-    if (!match) return -1;
+    if (!match) return;
 
     const slug = match[1];
     const tabIndex = settingsTabs.findIndex((tab) => createTabSlug(tab.label) === slug);
@@ -159,14 +159,12 @@ export const SettingsDialog = ({ open, onClose, handleOpen }: SettingsProps) => 
     if (tabIndex !== -1) {
       setTabValue(tabIndex);
     } else {
-      const invalidSlug = hash.match(/^#settings\/(\w+)/)?.[1];
-      if (invalidSlug) {
-        showToast(`Invalid settings tab: "${invalidSlug}". Redirecting to default tab.`, {
-          type: "warning",
-        });
-        replaceWithTab(0);
-        setTabValue(0);
-      }
+      const invalidSlug = match[1];
+      showToast(`Invalid settings tab: "${invalidSlug}". Redirecting to default tab.`, {
+        type: "warning",
+      });
+      replaceWithTab(0);
+      setTabValue(0);
     }
   }, [onClose]);
 
@@ -203,7 +201,6 @@ export const SettingsDialog = ({ open, onClose, handleOpen }: SettingsProps) => 
     const defaultThemeColor = muiTheme.palette.secondary.main;
 
     if (themeColorMeta) {
-      // ensure this runs after App.tsx useEffect to override theme-color
       setTimeout(() => {
         if (open) {
           themeColorMeta.setAttribute(
@@ -223,8 +220,8 @@ export const SettingsDialog = ({ open, onClose, handleOpen }: SettingsProps) => 
         e.preventDefault();
         handleDialogClose();
         navigate("/");
+
         setTimeout(async () => {
-          // ensure all emojis are loaded before printing
           await Promise.all(
             Array.from(
               document.querySelectorAll<HTMLImageElement>("img.epr-emoji-img[loading='lazy']"),
@@ -275,6 +272,7 @@ export const SettingsDialog = ({ open, onClose, handleOpen }: SettingsProps) => 
         removeDivider
       />
       <Divider sx={{ mb: 2 }} />
+
       <DialogContent sx={{ display: "flex", minHeight: 400, m: 0, p: 0, overflow: "hidden" }}>
         <Tabs
           orientation="vertical"
@@ -301,10 +299,11 @@ export const SettingsDialog = ({ open, onClose, handleOpen }: SettingsProps) => 
             />
           ))}
         </Tabs>
+
         <Box
           className="customScrollbar"
           ref={scrollRef}
-          sx={{ flex: 1, p: 0, m: isMobile ? "0 12px" : "0 20px 0 20px", overflowY: "auto" }}
+          sx={{ flex: 1, p: 0, m: isMobile ? "0 12px" : "0 20px", overflowY: "auto" }}
         >
           <TabGroupProvider value={tabValue} name="settings">
             {settingsTabs.map((tab, index) => (
@@ -331,6 +330,7 @@ export const SettingsDialog = ({ open, onClose, handleOpen }: SettingsProps) => 
           </TabGroupProvider>
         </Box>
       </DialogContent>
+
       {isMobile && (
         <CloseButtonContainer>
           <CloseButton variant="contained" onClick={handleDialogClose}>

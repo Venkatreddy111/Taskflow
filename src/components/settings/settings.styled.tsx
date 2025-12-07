@@ -23,17 +23,11 @@ const UnstyledSelect = (props: SelectProps) => {
         PaperProps: {
           style: {
             maxHeight: isMobile ? 400 : 220,
-            overflowY: "auto", // Make the dropdown scrollable if the content exceeds the height
+            overflowY: "auto",
           },
         },
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left",
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left",
-        },
+        anchorOrigin: { vertical: "bottom", horizontal: "left" },
+        transformOrigin: { vertical: "top", horizontal: "left" },
       }}
       {...props}
     />
@@ -80,9 +74,11 @@ export const StyledTab = styled(UnstyledTab)`
   border-radius: 14px;
   min-height: 0;
   padding: 18px;
+
   &.Mui-selected {
     background-color: ${({ theme }) => theme.primary + "23"};
   }
+
   @media (max-width: 768px) {
     margin-right: 0;
     font-size: 13px;
@@ -122,7 +118,8 @@ export const VolumeSlider = styled(Stack)`
 `;
 
 export const StyledListSubheader = styled(ListSubheader)`
-  background-color: ${({ theme }) => (theme.darkmode ? "#2e2e2e" : "#ffffff")};
+  background-color: ${({ theme }) =>
+    theme.darkmode ? "#2e2e2e" : "#ffffff"};
   font-weight: 600;
   position: sticky;
   z-index: 1;
