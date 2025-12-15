@@ -111,7 +111,7 @@ export const showToast = (
     }
     const alreadyVisible = visibleToasts.some((t) => t.id === toastOptions.id && t.visible);
     if (alreadyVisible) {
-      //TODO: reset toast duration
+      //Taskflow: reset toast duration
       const elem = document.getElementById(toastOptions.id);
       if (elem) {
         applyBounce(elem);

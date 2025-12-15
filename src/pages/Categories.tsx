@@ -76,7 +76,7 @@ const Categories = () => {
   const selectedCategory = user.categories.find((cat) => cat.id === selectedCategoryId);
 
   useEffect(() => {
-    document.title = "Todo App - Categories";
+    document.title = "Taskflow - Categories";
     if (!user.settings.enableCategories) {
       n("/");
     }

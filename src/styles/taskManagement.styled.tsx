@@ -3,7 +3,7 @@ import { Box, Button, ButtonProps } from "@mui/material";
 import { getFontColor } from "../utils";
 import { Info } from "@mui/icons-material";
 
-//TODO: design this better
+//Taskflow: design this better
 export const TaskManagementContainer = styled(Box)<{ backgroundClr: string; selected: boolean }>`
   display: flex;
   align-items: center;

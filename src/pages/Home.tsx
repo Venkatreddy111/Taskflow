@@ -36,7 +36,7 @@ const Home = () => {
   const isMobile = useResponsiveDisplay();
 
   useEffect(() => {
-    document.title = "Todo App";
+    document.title = "Taskflow";
   }, []);
 
   // Calculate these values only when tasks change

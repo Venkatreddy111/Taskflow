@@ -58,7 +58,7 @@ export const defaultUser: User = {
   ],
   deletedCategories: [],
   favoriteCategories: ["ebe6ce8b-471f-4632-a23b-578e1038ce51"],
-  //TODO: make default colors better
+  //Taskflow: make default colors better
   colorList: [
     "#FF69B4",
     "#FF22B4",

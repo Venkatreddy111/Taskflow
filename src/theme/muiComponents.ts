@@ -16,7 +16,7 @@ export const muiComponentsProps: Theme["components"] = {
         padding: "12px 24px",
         borderRadius: "14px",
       },
-      // TODO: use startIcon for mui button icons instead
+      // Taskflow: use startIcon for mui button icons instead
       // startIcon: {
       //   fontSize: "24px",
       //   "& > *:nth-of-type(1)": {

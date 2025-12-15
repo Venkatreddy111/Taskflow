@@ -85,7 +85,7 @@ const workbox: Partial<GenerateSWOptions> = {
       },
     },
     // DON'T cache emojis for now since they take a lot of space
-    //TODO: find a way to only cache the ones used by user
+    //Taskflow: find a way to only cache the ones used by user
     {
       urlPattern: /^https:\/\/cdn\.jsdelivr\.net\/npm\/emoji-datasource/i,
       handler: "NetworkOnly",

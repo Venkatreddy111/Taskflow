@@ -1,15 +1,15 @@
 import type { ManifestOptions } from "vite-plugin-pwa";
 
 const manifest: Partial<ManifestOptions> = {
-  name: "Todo App",
-  short_name: "Todo App",
+  name: "Taskflow",
+  short_name: "Taskflow",
   display: "standalone",
   scope: "/",
   start_url: "/",
   theme_color: "#7764E8",
   background_color: "#171D34",
   description:
-    "A fast and modern Todo app built with React, featuring task sharing via link, P2P Task Sync with WebRTC, theme customization, offline usage as a PWA, and caching for smooth performance. Made by github.com/maciekt07",
+    "A fast and modern Taskflow app built with React, featuring task sharing via link, P2P Task Sync with WebRTC, theme customization, offline usage as a PWA, and caching for smooth performance. Made by github.com/venkatreddy111",
   categories: ["productivity", "utilities", "lifestyle"],
   edge_side_panel: {
     preferred_width: 500,

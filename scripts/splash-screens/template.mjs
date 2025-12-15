@@ -13,7 +13,7 @@
 const template = ({ width, height, mode }) => {
   const isLandscape = width > height;
   // FIXME: adjust styles for iphones smaller than ip8
-  //TODO: optimize gradient for smaller screenshot size with PNG
+  //Taskflow: optimize gradient for smaller screenshot size with PNG
   return `
      <html>
       <head>
@@ -107,7 +107,7 @@ const template = ({ width, height, mode }) => {
         <div class="container">
           <img src="https://raw.githubusercontent.com/maciekt07/TodoApp/refs/heads/main/public/logo.svg" class="logo" alt="App Logo" />
           <div class="app-name">
-            <span class="todo">Todo</span>
+            <span class="todo">Taskflow</span>
             <span class="app">&nbsp;App</span>
             <span class="dot">.</span>
           </div>

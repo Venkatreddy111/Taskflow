@@ -63,7 +63,7 @@ export default function Sync() {
   }, [otherDataSyncOption]);
 
   useEffect(() => {
-    document.title = "Todo App - Sync Data";
+    document.title = "Taskflow - Sync Data";
   }, []);
 
   const handleScan = (text: string | null) => {

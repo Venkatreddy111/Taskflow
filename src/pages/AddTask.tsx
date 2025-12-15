@@ -41,7 +41,7 @@ const AddTask = () => {
   const { toasts } = useToasterStore();
 
   useEffect(() => {
-    document.title = "Todo App - Add Task";
+    document.title = "Taskflow - Add Task";
   }, []);
 
   useEffect(() => {

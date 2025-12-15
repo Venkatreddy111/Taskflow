@@ -42,7 +42,7 @@ import {
 } from "../utils/profilePictureStorage";
 import { ColorPalette } from "../theme/themeConfig";
 
-// TODO: move this to settings dialog
+// Taskflow: move this to settings dialog
 const UserProfile = () => {
   const { user, setUser } = useContext(UserContext);
   const { name, profilePicture, createdAt } = user;
@@ -54,7 +54,7 @@ const UserProfile = () => {
   const [showBrokenPfpAlert, setShowBrokenPfpAlert] = useState(false);
 
   useEffect(() => {
-    document.title = `Todo App - User ${name ? `(${name})` : ""}`;
+    document.title = `Taskflow - User ${name ? `(${name})` : ""}`;
   }, [name]);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 {
-  "name": "todoapp",
+  "name": "taskflow",
   "author": {
     "name": "Venkatreddy111",
     "url": "https://github.com/Venkatreddy111"
@@ -9,7 +9,7 @@
   "homepage": "https://react-cool-todo-app.netlify.app/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Venkatreddy111/TodoApp.git"
+    "url": "git+https://github.com/Venkatreddy111/Taskflow.git"
   },
   "license": "MIT",
   "scripts": {

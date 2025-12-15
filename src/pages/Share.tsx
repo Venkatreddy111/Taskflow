@@ -26,7 +26,7 @@ const SharePage = () => {
   const [errorDetails, setErrorDetails] = useState<string | undefined>();
 
   useEffect(() => {
-    document.title = `Todo App - Recieved Task ${taskData ? "(" + taskData.name + ")" : ""}`;
+    document.title = `Taskflow - Recieved Task ${taskData ? "(" + taskData.name + ")" : ""}`;
   }, [taskData]);
 
   useEffect(() => {

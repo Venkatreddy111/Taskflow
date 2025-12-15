@@ -41,7 +41,7 @@ This feature uses Chrome’s experimental `window.LanguageModel` API powered by 
 
 ⚠️ Requires **Chrome Canary 128+** with the **Gemini Nano model installed** - [Setup guide](https://docs.google.com/document/d/1VG8HIyz361zGduWgNG7R_R8Xkv0OOJ8b5C9QKeCjU0c/view?pli=1&tab=t.0#heading=h.witohboigk0o)
 
-Code: [src/components/EmojiPicker.tsx](https://github.com/maciekt07/TodoApp/blob/main/src/components/EmojiPicker.tsx#L116)
+Code: [src/components/EmojiPicker.tsx](https://github.com/venkatreddy111/Taskflow/blob/main/src/components/EmojiPicker.tsx#L116)
 
 <img src="https://raw.githubusercontent.com/maciekt07/TodoApp/main/screenshots/emoji-ai.gif" alt="AI Emoji" width="360px" style="border-radius:12px" />
 
@@ -68,7 +68,7 @@ Option to have tasks read aloud using the native `SpeechSynthesis` API, with a s
 
 ### 📥 Import/Export Tasks
 
-Users can import and export tasks to/from JSON files. This feature allows users to back up their tasks or transfer them to other devices easily. [Example Import File](https://github.com/maciekt07/TodoApp/blob/main/example-import.json)
+Users can import and export tasks to/from JSON files. This feature allows users to back up their tasks or transfer them to other devices easily. [Example Import File](https://github.com/venkatreddy111/Taskflow/blob/main/example-import.json)
 
 ### 📴 Progressive Web App (PWA)
 
@@ -92,7 +92,7 @@ To generate splash screens:
 npm run generate-splash
 ```
 
-Code: [scripts/splash-screens](https://github.com/maciekt07/TodoApp/blob/main/scripts/splash-screens)
+Code: [scripts/splash-screens](https://github.com/venkatreddy111/Taskflow/blob/main/scripts/splash-screens)
 
 ## 👨‍💻 Installation
 

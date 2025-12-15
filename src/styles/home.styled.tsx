@@ -28,7 +28,7 @@ export const TasksCountContainer = styled.div`
     display: none;
   }
 `;
-//TODO: design this better for light themes
+//Taskflow: design this better for light themes
 export const TasksCount = styled.div<{ glow: boolean }>`
   position: relative;
   color: ${({ theme }) => getFontColor(theme.secondary)};
