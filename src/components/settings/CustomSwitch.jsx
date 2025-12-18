@@ -1,0 +1,40 @@
+import React, { useContext } from "react";
+import { Box, Switch, Typography, FormControlLabel, FormGroup } from "@mui/material";
+import { UserContext } from "../../contexts/UserContext";
+import { InfoOutlined } from "@mui/icons-material";
+const CustomSwitch = ({ header, text, settingKey, disabled, disabledReason, }) => {
+    const { user, setUser } = useContext(UserContext);
+    const handleToggle = () => {
+        const updatedSettings = {
+            ...user.settings,
+            [settingKey]: !user.settings[settingKey],
+        };
+        setUser((prev) => ({ ...prev, settings: updatedSettings }));
+    };
+    return (<Box sx={{ my: 2, mx: 1, display: "flex", flexDirection: "column", opacity: disabled ? 0.6 : 1 }}>
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <Typography variant="h6" sx={{ fontWeight: 600, color: "text.primary", fontSize: "16px" }}>
+          {header} {/* Example: “Enable Taskflow Sync”, “Auto-Sort Tasks”, etc. */}
+        </Typography>
+
+        <FormGroup>
+          <FormControlLabel control={<Switch checked={user.settings[settingKey]} onChange={handleToggle} onKeyUp={(e) => {
+                if (e.key === "Enter" && !disabled) {
+                    e.preventDefault();
+                    handleToggle();
+                }
+            }} disabled={disabled}/>} label=""/>
+        </FormGroup>
+      </Box>
+
+      {text && (<Typography variant="body2" sx={{ color: "text.secondary", mt: 0 }}>
+          {text} {/* Example: “Automatically organize your taskflow items.” */}
+        </Typography>)}
+
+      {disabled && disabledReason && (<Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
+          <InfoOutlined fontSize="small" sx={{ mr: 0.5 }}/>
+          <Typography variant="caption">{disabledReason}</Typography>
+        </Box>)}
+    </Box>);
+};
+export default CustomSwitch;

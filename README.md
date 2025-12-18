@@ -17,7 +17,7 @@
     <img src="https://go-skill-icons.vercel.app/api/icons?i=react" alt="react" width="24" style="vertical-align: middle; margin-right: 4px;" /> React
   </li>
     <li style="vertical-align: middle;">
-    <img src="https://go-skill-icons.vercel.app/api/icons?i=typescript" alt="typescript" width="20" style="vertical-align: middle;margin-right: 4px;" /> Typescript
+    <img src="https://go-skill-icons.vercel.app/api/icons?i=javascript" alt="javascript" width="20" style="vertical-align: middle;margin-right: 4px;" /> JavaScript
   </li>
     <li style="vertical-align: middle;">
     <img src="https://go-skill-icons.vercel.app/api/icons?i=vite" alt="vite" width="24" style="vertical-align: middle;margin-right: 4px;" /> Vite
@@ -41,7 +41,7 @@ This feature uses Chrome’s experimental `window.LanguageModel` API powered by 
 
 ⚠️ Requires **Chrome Canary 128+** with the **Gemini Nano model installed** - [Setup guide](https://docs.google.com/document/d/1VG8HIyz361zGduWgNG7R_R8Xkv0OOJ8b5C9QKeCjU0c/view?pli=1&tab=t.0#heading=h.witohboigk0o)
 
-Code: [src/components/EmojiPicker.tsx](https://github.com/venkatreddy111/Taskflow/blob/main/src/components/EmojiPicker.tsx#L116)
+Code: [src/components/EmojiPicker.jsx](https://github.com/venkatreddy111/Taskflow/blob/main/src/components/EmojiPicker.jsx#L116)
 
 <img src="https://raw.githubusercontent.com/maciekt07/TodoApp/main/screenshots/emoji-ai.gif" alt="AI Emoji" width="360px" style="border-radius:12px" />
 
@@ -125,7 +125,7 @@ npm run dev
 The app will now be running at [http://localhost:5173/](http://localhost:5173/).
 
 > [!TIP]
-> For mobile device testing, use `npm run dev:host` to preview the app on your local network with HTTPS (required for camera features) and a QR code in the terminal for quick access. To enable PWA features in development, see `vite.config.ts`.
+> For mobile device testing, use `npm run dev:host` to preview the app on your local network with HTTPS (required for camera features) and a QR code in the terminal for quick access. To enable PWA features in development, see `vite.config.js`.
 
 ## 📷 Screenshots
 

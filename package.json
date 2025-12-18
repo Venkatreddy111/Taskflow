@@ -16,14 +16,13 @@
     "dev": "vite",
     "dev:host": "vite --host",
     "test": "vitest",
-    "test:typecheck": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prettier": "prettier --write \"**/*.{ts,js,mjs,tsx,md,json,html,css}\"",
+    "prettier": "prettier --write \"**/*.{js,mjs,jsx,md,json,html,css}\"",
     "format": "npm run lint:fix && npm run prettier",
     "generate-splash": "npm run generate-splash:cleanup && node scripts/splash-screens/generate.mjs && prettier --write index.html",
     "generate-splash:cleanup": "node scripts/splash-screens/generate.mjs --mode=cleanup && prettier --write index.html",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "preview:host": "vite preview --host",
     "prepare": "husky",
@@ -56,11 +55,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
-    "@types/dom-chromium-ai": "^0.0.9",
-    "@types/react": "^19.2.6",
-    "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/eslint-plugin": "^8.30.1",
-    "@typescript-eslint/parser": "^8.30.1",
     "@vitejs/plugin-basic-ssl": "^2.0.0",
     "@vitejs/plugin-react": "^4.4.0",
     "eslint": "^9.25.0",
@@ -72,15 +66,13 @@
     "prettier": "^3.5.3",
     "puppeteer": "^24.6.1",
     "rimraf": "^6.0.1",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.30.1",
     "vite": "^6.3.2",
     "vite-plugin-pwa": "^1.0.0",
     "vite-plugin-qrcode": "^0.2.4",
     "vitest": "^3.1.1"
   },
   "sideEffects": [
-    "**/*.styled.tsx"
+    "**/*.styled.jsx"
   ],
   "overrides": {
     "react-spring-bottom-sheet": {
@@ -88,6 +80,6 @@
     }
   },
   "lint-staged": {
-    "**/*.{ts,tsx,js,mjs,md,json,html,css}": "npm run format"
+    "**/*.{js,jsx,mjs,md,json,html,css}": "npm run format"
   }
 }
